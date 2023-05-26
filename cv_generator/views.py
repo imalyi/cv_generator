@@ -11,6 +11,7 @@ class Overview(TemplateView):
         context = super().get_context_data(**kwargs)
         context['expereince'] = Experience.objects.filter(user_id=self.request.user.id).order_by('start')
         context['skill'] = Skill.objects.filter(user_id=self.request.user.id)
+        context['contact_data'] = ContactData.objects.filter(user_id=self.request.user.id)
         if not context['expereince'] and not context['skill']:
             context['empty'] = False
         else:
@@ -52,7 +53,7 @@ class EducationView(LoginRequiredMixin, UserId, CreateView):
     success_url = '/education/'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['education'] = Skill.objects.filter(user_id=self.request.user.id)
+        context['education'] = Education.objects.filter(user_id=self.request.user.id)
         return context
 
 
@@ -63,5 +64,5 @@ class ContactDataView(LoginRequiredMixin, UserId, CreateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['contact_data'] = Skill.objects.filter(user_id=self.request.user.id)
+        context['contact_data'] = ContactData.objects.all().filter(user_id=self.request.user.id)
         return context

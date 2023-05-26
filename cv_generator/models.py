@@ -30,6 +30,11 @@ class Education(Model):
 class ContactDataType(Model):
     value = CharField(max_length=200)
 
+    def __str__(self):
+        return f"{self.value}"
+
+    def __repr__(self):
+        return f"{self.value}"
 
 class ContactData(Model):
     value = CharField(max_length=550)

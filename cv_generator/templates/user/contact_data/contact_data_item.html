@@ -1,0 +1,10 @@
+<h2>Your Contact Data</h2>
+<div class="experience-entry">
+    {% for row in contact_data %}
+        <div class="experience-block">
+            <h3>{{ row.type }}</h3>
+            <p class="job-title">{{ row.value }}</p>
+
+          </div>
+    {% endfor %}
+    </div>

@@ -2,19 +2,22 @@
 
 {% load static %}
 
-{% block nav %}
-{% include 'menu/horizontal.html' %}
-{% endblock %}
 {% block content %}
-    {% if empty %}
+    <link rel="stylesheet" href="{% static 'overview.css' %}">
+    {% if  expereince %}
         <link rel="stylesheet" href="{% static 'experience_entry.css' %}">
         <link rel="stylesheet" href="{% static 'experience_form.css' %}">
-{% include 'user/experience/experience_item.html' %}
- {% include 'user/skill/skill_item.html' %}
-    {% else %}
-<link rel="stylesheet" href="{% static 'overview.css' %}">
+        {% include 'user/experience/experience_item.html' %}
+    {% endif %}
+    {% if skill %}
+        {% include 'user/skill/skill_item.html' %}
+    {% endif %}
+
+    {% if contact_data %}
+        {% include 'user/contact_data/contact_data_item.html' %}
+    {% endif %}
+
 <div class="warning-message">
   <p>Now you don't have any information about yourself. Please start adding information, and your details will be displayed here. Use the horizontal menu above to navigate.</p>
 </div>
-    {% endif %}
 {% endblock %}
