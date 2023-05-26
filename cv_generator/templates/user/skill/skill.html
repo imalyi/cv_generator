@@ -3,23 +3,13 @@
 {% load static %}
 {% block title %}Skills{% endblock %}
 {% block content %}
-        <link rel="stylesheet" href="{% static 'experience_entry.css' %}">
-        <link rel="stylesheet" href="{% static 'experience_form.css' %}">
-{% if skill %}
-    <h2>Your Skills</h2>
-{% include 'user/skill/skill_item.html' %}
+    <link rel="stylesheet" href="{% static 'experience_entry.css' %}">
+    <link rel="stylesheet" href="{% static 'experience_form.css' %}">
+    {% if skill %}
+        {% include 'user/skill/skill_item.html' %}
     {% else %}
-    <p></p>
+        <p></p>
     {% endif %}
-        <div class="experience-form">
-      <h2>Add Skills</h2>
-      <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Add Experience">
-      </form>
-    </div>
-{% endblock %}
-{% block nav %}
-    {% include 'menu/horizontal.html' %}
+    <h2>Add Skills</h2>
+    {% include 'forms/standard_add_form.html' %}
 {% endblock %}

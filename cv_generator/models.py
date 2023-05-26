@@ -16,9 +16,9 @@ class Experience(Model):
 
 
 class Education(Model):
-    title = CharField(max_length=250)
+    educational_institution = CharField(max_length=250)
     degree = CharField(max_length=250)
-    average = FloatField(blank=True)
+    grade_point_average = FloatField(blank=True)
     start = DateField()
     end = DateField()
     user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)

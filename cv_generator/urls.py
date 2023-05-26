@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from django.views.generic.base import TemplateView
-from cv_generator.views import ExpereinceView, Overview, SkillView
+from cv_generator.views import ExpereinceView, Overview, SkillView, EducationView, ContactDataView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -10,4 +9,7 @@ urlpatterns = [
     path("", Overview.as_view()),
     path("expereince/", ExpereinceView.as_view()),
     path("skills/", SkillView.as_view()),
+    path("education/", EducationView.as_view()),
+    path("contact_data/", ContactDataView.as_view())
+
 ]

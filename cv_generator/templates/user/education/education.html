@@ -1,15 +1,18 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% block title %}Experience{% endblock %}
+{% block title %}Education{% endblock %}
 {% block content %}
     <link rel="stylesheet" href="{% static 'experience_entry.css' %}">
     <link rel="stylesheet" href="{% static 'experience_form.css' %}">
-    {% if expereince %}
-        {% include 'user/experience/experience_item.html' %}
+    {% if education %}
+        {% include 'user/education/education_item.html' %}
     {% else %}
-        <p></p>
+            <p></p>
     {% endif %}
-    <h2>Add Experience</h2>
+    <h2>Add Education</h2>
     {% include 'forms/standard_add_form.html' %}
+{% endblock %}
+{% block nav %}
+    {% include 'menu/horizontal.html' %}
 {% endblock %}

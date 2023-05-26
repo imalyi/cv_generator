@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}Contact Data{% endblock %}
+{% block content %}
+        <link rel="stylesheet" href="{% static 'experience_entry.css' %}">
+        <link rel="stylesheet" href="{% static 'experience_form.css' %}">
+    {% if contact_data %}
+
+    {% include 'user/contact_data/contact_data_item.html' %}
+    {% else %}
+        <p></p>
+    {% endif %}
+    <h2>Add Contact Data</h2>
+    {% include 'forms/standard_add_form.html' %}
+{% endblock %}
