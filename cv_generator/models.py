@@ -1,9 +1,5 @@
 from django.db.models import Model, CharField, IntegerField, DateField, ForeignKey, CASCADE, FloatField
-
-
-class User(Model):
-    name = CharField(max_length=100)
-    surname = CharField(max_length=100)
+import cv_generator.settings as settings
 
 
 class Experience(Model):
@@ -11,7 +7,12 @@ class Experience(Model):
     end = DateField()
     position = CharField(max_length=150)
     location = CharField(max_length=150)
-    user = ForeignKey(User, on_delete=CASCADE)
+    user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
+    description = CharField(max_length=5000)
+    company_name = CharField(max_length=150)
+
+    def __str__(self):
+        return f"{self.user}: {self.position}({self.start}: {self.end}), {self.location}"
 
 
 class Education(Model):
@@ -20,6 +21,10 @@ class Education(Model):
     average = FloatField(blank=True)
     start = DateField()
     end = DateField()
+    user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
+
+    def __str__(self):
+        return f"{self.user}: {self.title}({self.start}: {self.end}), {self.average}, {self.degree}"
 
 
 class ContactDataType(Model):
@@ -29,6 +34,7 @@ class ContactDataType(Model):
 class ContactData(Model):
     value = CharField(max_length=550)
     type = ForeignKey(ContactDataType, on_delete=CASCADE)
+    user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
 
 
 class SocialNetworkType(Model):
@@ -42,10 +48,12 @@ class SocialNetwork(Model):
 class SkillType(Model):
     value = CharField(max_length=320)
 
+    def __str__(self):
+        return f"{self.value}"
+
 
 class Skill(Model):
     value = CharField(max_length=250)
     description = CharField(max_length=250)
     type = ForeignKey(SkillType, on_delete=CASCADE)
-
-
+    user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)

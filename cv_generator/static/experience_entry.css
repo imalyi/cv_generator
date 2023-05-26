@@ -1,0 +1,36 @@
+
+.experience-block {
+background-color: lightgreen;
+padding: 20px;
+}
+
+.experience-entry {
+margin-bottom: 20px;
+border: 1px solid green;
+padding: 10px;
+}
+
+.experience-entry h3 {
+color: darkgreen;
+}
+
+.experience-entry .job-title {
+color: green;
+font-weight: bold;
+}
+
+.experience-entry .job-duration {
+color: green;
+font-style: italic;
+margin-top: 5px;
+}
+
+.experience-entry .job-location {
+color: green;
+font-weight: bold;
+margin-top: 5px;
+}
+
+.experience-entry .job-description {
+color: green;
+}

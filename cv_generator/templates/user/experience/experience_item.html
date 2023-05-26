@@ -1,0 +1,11 @@
+<div class="experience-entry">
+    {% for row in expereince %}
+    <div class="experience-block">
+        <h3>{{ row.company_name }}</h3>
+        <p class="job-title">{{ row.position }}</p>
+        <p class="job-duration">Duration: {{ row.start }} - {{ row.end }}</p>
+        <p class="job-location">Location: {{ row.location }}</p>
+        <p class="job-description">{{ row.description }}</p>
+      </div>
+    {% endfor %}
+    </div>

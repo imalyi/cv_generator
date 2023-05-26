@@ -3,7 +3,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-k*5jo61+fhja*y+w=*(e04+ohf!+mg0qqfdz^r*(edc7m4o7(1'
-
+AUTH_USER_MODEL = 'auth.User'
 DEBUG = True
 
 ALLOWED_HOSTS = []

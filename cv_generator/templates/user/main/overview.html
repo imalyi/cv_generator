@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block nav %}
+{% include 'menu/horizontal.html' %}
+{% endblock %}
+{% block content %}
+    {% if expereince %}
+        <link rel="stylesheet" href="{% static 'experience_entry.css' %}">
+        <link rel="stylesheet" href="{% static 'experience_form.css' %}">
+{% include 'user/experience/experience_item.html' %}
+    {% else %}
+<link rel="stylesheet" href="{% static 'overview.css' %}">
+<div class="warning-message">
+  <p>Now you don't have any information about yourself. Please start adding information, and your details will be displayed here. Use the horizontal menu above to navigate.</p>
+</div>
+
+    {% endif %}
+{% endblock %}

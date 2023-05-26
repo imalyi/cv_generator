@@ -1,0 +1,10 @@
+ .warning-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: lightgreen;
+    padding: 20px;
+    text-align: center;
+    color: darkgreen;
+  }
