@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
-from cv_generator.views import ExpereinceView, Overview, SkillView, EducationView, ContactDataView, ExpereinceUpdateView, ExpereinceDeleteView, SkillUpdateView
-
+from cv_generator.views import ExpereinceView, Overview, SkillView, EducationView, ContactDataView, ExpereinceUpdateView, ExpereinceDeleteView, SkillUpdateView, SkllDeleteView
+from cv_generator.views import EducationDeleteView, EducationUpdateView, ContactDataDeleteView, ContactDataUpdateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("accounts.urls")),
@@ -16,9 +16,13 @@ urlpatterns = [
 
     path("skills/", SkillView.as_view(), name='skill'),
     path("skills/<int:pk>/update", SkillUpdateView.as_view(), name='skill-update'),
-    path("skills/<int:pk>/delete", SkillView.as_view(), name='skill-delete'),
+    path("skills/<int:pk>/delete", SkllDeleteView.as_view(), name='skill-delete'),
 
     path("education/", EducationView.as_view()),
-    path("contact_data/", ContactDataView.as_view())
+    path("education/<int:pk>/update", EducationUpdateView.as_view(), name='education-update'),
+    path("education/<int:pk>/delete", EducationDeleteView.as_view(), name='education-delete'),
 
+    path("contact_data/", ContactDataView.as_view()),
+    path("contact_data/<int:pk>/update", ContactDataUpdateView.as_view(), name='contact-data-update'),
+    path("contact_data/<int:pk>/delete", ContactDataDeleteView.as_view(), name='contact-data-delete'),
 ]

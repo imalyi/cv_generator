@@ -4,7 +4,8 @@
         <div class="experience-block">
             <h3>{{ row.type }}</h3>
             <p class="job-title">{{ row.value }}</p>
-
+            <a href="{% url 'contact-data-update' row.pk %}">edit</a>
+         <a href="{% url 'contact-data-delete' row.pk %}">delete</a>
           </div>
     {% endfor %}
     </div>

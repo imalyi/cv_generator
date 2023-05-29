@@ -1,5 +1,5 @@
 from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
-from django.views.generic import  TemplateView
+from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from cv_generator.forms import ExpeienceForm, SkillForm, EducationForm, ContactDataForm
 from cv_generator.models import Experience, ContactData, Skill, Education
@@ -47,7 +47,7 @@ class ExpereinceUpdateView(UpdateView):
 class ExpereinceDeleteView(DeleteView):
     model = Experience
     success_url = "/"
-    template_name = 'user/experience/experience_confirm_delete.html'
+    template_name = 'user/main/confirm_delete_form.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -77,6 +77,12 @@ class SkillUpdateView(UpdateView):
         return context
 
 
+class SkllDeleteView(DeleteView):
+    model = Skill
+    success_url = "/"
+    template_name = 'user/main/confirm_delete_form.html'
+
+
 class EducationView(LoginRequiredMixin, UserId, CreateView):
     template_name = 'user/education/education.html'
     form_class = EducationForm
@@ -85,6 +91,32 @@ class EducationView(LoginRequiredMixin, UserId, CreateView):
         context = super().get_context_data(**kwargs)
         context['education'] = Education.objects.filter(user_id=self.request.user.id)
         return context
+
+
+
+
+class EducationUpdateView(UpdateView):
+    model = Education
+    form_class = EducationForm
+    success_url = "/"
+    template_name = 'user/education/education.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['education'] = []
+        return context
+
+
+class EducationDeleteView(DeleteView):
+    model = Education
+    success_url = "/"
+    template_name = 'user/main/confirm_delete_form.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['education'] = Experience.objects.filter(user_id=self.request.user.id)
+        return context
+
 
 
 class ContactDataView(LoginRequiredMixin, UserId, CreateView):
@@ -96,3 +128,20 @@ class ContactDataView(LoginRequiredMixin, UserId, CreateView):
         context = super().get_context_data(**kwargs)
         context['contact_data'] = ContactData.objects.all().filter(user_id=self.request.user.id)
         return context
+
+class ContactDataUpdateView(UpdateView):
+    model = ContactData
+    form_class = ContactDataForm
+    success_url = "/"
+    template_name = 'user/education/education.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['contact_data'] = []
+        return context
+
+
+class ContactDataDeleteView(DeleteView):
+    model = ContactData
+    success_url = "/"
+    template_name = 'user/main/confirm_delete_form.html'

@@ -7,6 +7,8 @@
         <p class="job-duration">Duration: {{ row.start }} - {{ row.end }}</p>
         <p class="job-location">Grade Point Average: {{ row.location }}</p>
         <p class="job-description">{{ row.grade_point_average }}</p>
+            <a href="{% url 'education-update' row.pk %}">edit</a>
+        <a href="{% url 'education-delete' row.pk %}">delete</a>
       </div>
     {% endfor %}
     </div>
