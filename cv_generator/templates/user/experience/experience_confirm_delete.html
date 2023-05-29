@@ -1,15 +1,13 @@
 {% extends 'base.html' %}
-
 {% load static %}
 {% block title %}Experience{% endblock %}
 {% block content %}
     <link rel="stylesheet" href="{% static 'experience_entry.css' %}">
     <link rel="stylesheet" href="{% static 'experience_form.css' %}">
-    {% if expereince %}
-        {% include 'user/experience/experience_item.html' %}
-    {% else %}
-        <p></p>
-    {% endif %}
-    <h2>Add Experience</h2>
-    {% include 'forms/standard_add_form.html' %}
+    <h2>Confirm deletion</h2>
+       <div class="experience-form">
+     <form method="post">{% csrf_token %}
+         <input type="submit" value="Delete">
+     </form>
+       </div>
 {% endblock %}

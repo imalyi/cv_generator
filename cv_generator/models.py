@@ -24,7 +24,7 @@ class Education(Model):
     user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
 
     def __str__(self):
-        return f"{self.user}: {self.title}({self.start}: {self.end}), {self.average}, {self.degree}"
+        return f"{self.user}: {self.educational_institution}({self.start}: {self.end}), {self.grade_point_average}, {self.degree}"
 
 
 class ContactDataType(Model):
@@ -35,6 +35,7 @@ class ContactDataType(Model):
 
     def __repr__(self):
         return f"{self.value}"
+
 
 class ContactData(Model):
     value = CharField(max_length=550)

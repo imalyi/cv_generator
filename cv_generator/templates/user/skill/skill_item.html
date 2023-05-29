@@ -7,6 +7,8 @@
         <p class="job-duration">Duration: {{ row.start }} - {{ row.end }}</p>
         <p class="job-location">{{ row.type }}</p>
         <p class="job-description">{{ row.description }}</p>
+            <a href="{% url 'skill-update' row.pk %}">edit</a>
+        <a href="{% url 'skill-delete' row.pk %}">delete</a>
       </div>
     {% endfor %}
     </div>
