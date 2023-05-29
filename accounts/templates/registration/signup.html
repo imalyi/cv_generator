@@ -1,5 +1,4 @@
-<!-- templates/registration/signup.html -->
-{% extends "base.html" %}
+{% extends "registration/base_account.html" %}
 
 
 {% load static %}
@@ -10,7 +9,7 @@
        <link rel="stylesheet" href="{% static 'login.css' %}">
 <div class="container">
     <h2>Sign Up</h2>
-    <form>
+    <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
       <button type="submit">Sign Up</button>

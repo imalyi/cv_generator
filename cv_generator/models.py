@@ -1,4 +1,4 @@
-from django.db.models import Model, CharField, IntegerField, DateField, ForeignKey, CASCADE, FloatField
+from django.db.models import Model, CharField, DateField, ForeignKey, CASCADE, FloatField
 import cv_generator.settings as settings
 
 

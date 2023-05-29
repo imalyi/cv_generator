@@ -57,11 +57,20 @@ TEMPLATES = [
 WSGI_APPLICATION = 'cv_generator.wsgi.application'
 
 DATABASES = {
-    'default': {
+    'develop': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    },
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'cv',
+        'USER': 'root',
+        'PASSWORD': '343877',
+        'HOST':'mysql',
+        'PORT':'3306',
     }
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {

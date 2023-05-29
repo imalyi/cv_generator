@@ -11,7 +11,7 @@ class UserId:
         return super().form_valid(form)
 
 
-class Overview(TemplateView):
+class Overview(LoginRequiredMixin, TemplateView):
     template_name = 'user/main/overview.html'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

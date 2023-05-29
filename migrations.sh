@@ -9,3 +9,7 @@ python3 manage.py migrate cv_generator
 
 export DJANGO_SETTINGS_MODULE=cv_generator.settings
 python3 createsuperuser.py
+
+
+echo "-----------Run server--------- "
+python manage.py runserver 0.0.0.0:8000

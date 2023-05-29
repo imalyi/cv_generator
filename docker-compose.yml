@@ -1,0 +1,30 @@
+---
+version: "2.1"
+services:
+  mysql:
+    image: lscr.io/linuxserver/mariadb:latest
+    container_name: db
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - MYSQL_ROOT_PASSWORD=343877
+      - MYSQL_DATABASE=cv
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=343877
+    ports:
+      - "3906:3306"
+    volumes:
+      - /data/cv_data:/config
+    restart: always
+  api:
+    build: .
+    image: web_ui
+    container_name: web_ui
+    ports:
+      - "7080:8000"
+    restart: always
+    depends_on:
+      - mysql
+
+...
