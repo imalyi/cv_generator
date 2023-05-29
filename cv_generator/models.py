@@ -1,5 +1,17 @@
-from django.db.models import Model, CharField, DateField, ForeignKey, CASCADE, FloatField
+from django.db.models import Model, CharField, DateField, ForeignKey, CASCADE, FloatField, FileField, DO_NOTHING, DateTimeField
 import cv_generator.settings as settings
+
+
+class CvTemplate(Model):
+    name = CharField(max_length=200)
+    file = FileField(upload_to='cv_templates')
+
+
+class UserCV(Model):
+    template = ForeignKey(CvTemplate, on_delete=DO_NOTHING)
+    date = DateTimeField(auto_now=True)
+    file = FileField(upload_to='users_cv')
+    user = ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
 
 
 class Experience(Model):
