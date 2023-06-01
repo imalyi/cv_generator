@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.urls import path, include
 from cv_generator.views import ExpereinceView, Overview, SkillView, EducationView, ContactDataView, ExpereinceUpdateView, ExpereinceDeleteView, SkillUpdateView, SkllDeleteView
-from cv_generator.views import EducationDeleteView, EducationUpdateView, ContactDataDeleteView, ContactDataUpdateView
+from cv_generator.views import EducationDeleteView, EducationUpdateView, ContactDataDeleteView, ContactDataUpdateView, CvGenerator
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("accounts/", include("accounts.urls")),
@@ -25,4 +26,6 @@ urlpatterns = [
     path("contact_data/", ContactDataView.as_view()),
     path("contact_data/<int:pk>/update", ContactDataUpdateView.as_view(), name='contact-data-update'),
     path("contact_data/<int:pk>/delete", ContactDataDeleteView.as_view(), name='contact-data-delete'),
+
+    path('generate/', CvGenerator.as_view(), name='generate')
 ]

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Experience, Education, Skill, ContactData
+from .models import Experience, Education, Skill, ContactData, UserCV
 
 
 class DateInput(forms.DateInput):
@@ -40,3 +40,10 @@ class ContactDataForm(forms.ModelForm):
         model = ContactData
         fields = "__all__"
         exclude = ('user', )
+
+
+class UserCVForm(forms.ModelForm):
+    class Meta:
+        model = UserCV
+        fields = "__all__"
+        exclude = ('user', 'date', 'file', )

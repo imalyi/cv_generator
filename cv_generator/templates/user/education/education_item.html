@@ -2,8 +2,7 @@
 <div class="experience-entry">
     {% for row in education %}
     <div class="experience-block">
-        <h3>{{ row.educatonal_institution }}</h3>
-        <p class="job-title">{{ row.degree }}</p>
+        <p class="job-title">{{ row.educational_institution }}, {{ row.degree }}</p>
         <p class="job-duration">Duration: {{ row.start }} - {{ row.end }}</p>
         <p class="job-location">Grade Point Average: {{ row.location }}</p>
         <p class="job-description">{{ row.grade_point_average }}</p>

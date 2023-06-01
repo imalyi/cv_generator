@@ -2,9 +2,7 @@
 <div class="experience-entry">
     {% for row in skill %}
     <div class="experience-block">
-        <h3>{{ row.company_name }}</h3>
-        <p class="job-title">{{ row.value }}</p>
-        <p class="job-duration">Duration: {{ row.start }} - {{ row.end }}</p>
+        <p class="job-title">{{ row.value }} - {{ row.description }}</p>
         <p class="job-location">{{ row.type }}</p>
         <p class="job-description">{{ row.description }}</p>
             <a href="{% url 'skill-update' row.pk %}">edit</a>

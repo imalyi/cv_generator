@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block title %}Generate CV with my data{% endblock %}
+{% block content %}
+    <p></p>
+    <link rel="stylesheet" href="{% static 'experience_entry.css' %}">
+    <link rel="stylesheet" href="{% static 'experience_form.css' %}">
+    <div class="experience-block">
+    <form method="POST">
+        {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Generate CV using my data</button>
+    </form>
+      </div>
+
+
+{% endblock %}

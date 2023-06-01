@@ -1,14 +1,32 @@
-from django.views.generic.edit import FormView, CreateView, UpdateView, DeleteView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from cv_generator.forms import ExpeienceForm, SkillForm, EducationForm, ContactDataForm
-from cv_generator.models import Experience, ContactData, Skill, Education
+from cv_generator.forms import ExpeienceForm, SkillForm, EducationForm, ContactDataForm, UserCVForm
+from cv_generator.models import Experience, ContactData, Skill, Education, CvTemplate, UserCV
+from django.core import serializers
 
 
 class UserId:
     def form_valid(self, form):
         form.instance.user_id = self.request.user.id
         return super().form_valid(form)
+
+
+class CvGenerator(LoginRequiredMixin, UserId, CreateView):
+    model = UserCV
+    form_class = UserCVForm
+    template_name = 'user/cv/generate.html'
+    success_url = '/generate/'
+
+    def post(self, request, *args, **kwargs):
+        user_data = {
+            'experience': serializers.serialize('json', Experience.objects.filter(user_id=self.request.user.id).order_by('start')),
+            'education': serializers.serialize('json', Education.objects.filter(user_id=self.request.user.id).order_by('start')),
+            'skill': serializers.serialize('json', Skill.objects.filter(user_id=self.request.user.id)),
+            'contact_data': serializers.serialize('json', ContactData.objects.filter(user_id=self.request.user.id)),
+        }
+        print(user_data)
+        return super().post(request, *args, **kwargs)
 
 
 class Overview(LoginRequiredMixin, TemplateView):
@@ -93,8 +111,6 @@ class EducationView(LoginRequiredMixin, UserId, CreateView):
         return context
 
 
-
-
 class EducationUpdateView(UpdateView):
     model = Education
     form_class = EducationForm
@@ -118,7 +134,6 @@ class EducationDeleteView(DeleteView):
         return context
 
 
-
 class ContactDataView(LoginRequiredMixin, UserId, CreateView):
     template_name = 'user/contact_data/contact_data.html'
     form_class = ContactDataForm
@@ -128,6 +143,7 @@ class ContactDataView(LoginRequiredMixin, UserId, CreateView):
         context = super().get_context_data(**kwargs)
         context['contact_data'] = ContactData.objects.all().filter(user_id=self.request.user.id)
         return context
+
 
 class ContactDataUpdateView(UpdateView):
     model = ContactData
